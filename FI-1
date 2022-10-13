@@ -1,0 +1,18 @@
+import java.util.stream.Collectors;
+
+//1-sum of all prices > than 30000
+public class assignOne {
+    public static void main(String[] args) {
+        ArrayList<products> al = new ArrayList<>();
+        al.add(new products("hp",36565));
+        al.add(new products("mi",50909));
+        al.add(new products("oppo",20909));
+        al.add(new products("lenovo",15909));
+        al.add(new products("samsung",29909));
+        System.out.println(
+                al.stream()
+                        .filter(p -> p.price > 30000)
+                        .map(p->p.price)
+                        .reduce((int) 0, (k1, k2) -> k1 + k2));
+    }
+}
