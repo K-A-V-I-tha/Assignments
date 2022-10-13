@@ -16,3 +16,19 @@ public class assignOne {
                         .reduce((int) 0, (k1, k2) -> k1 + k2));
     }
 }
+class products{
+    String name;
+    int price;
+
+    public products( String name, int price) {
+        super();
+        this.name = name;
+        this.price=price;
+    }
+    public String getName() {
+        return name;
+    }
+    public int getPrice() {
+        return price;
+    }
+}
