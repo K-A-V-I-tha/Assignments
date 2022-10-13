@@ -1,0 +1,64 @@
+package MYsql1;
+
+
+import java.sql.*;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.Scanner;
+
+public class MenuDrivenAssign {
+    static String username="root";
+    static String password="Kavith@777";
+    static String DB_URL="jdbc:mysql://localhost:3306/menu";
+    public static void main(String[] args) throws SQLException {
+
+        Connection c = DriverManager.getConnection(DB_URL,username,password);
+       // System.out.println(c);
+        Statement s = (Statement) c.createStatement();
+        int choice;
+        System.out.println("enter num from 1 to 6");
+        Scanner n=new Scanner(System.in);
+        choice=n.nextInt();
+        if(choice==1){
+            s.executeUpdate("create table emp(id int primary key ,name varchar(50),salary int)");
+            System.out.println("Table successfully created");
+        }
+        if(choice==2){
+            s.executeUpdate("insert into emp values(1,'kavi',50000),(2,'harini',45000),(3,'ujwal',40000)");
+            System.out.println("DATA successfully inserted");
+        }
+        if(choice==3){
+            ResultSet rs=s.executeQuery("select *from emp");
+            while(rs.next()){
+                System.out.println(rs.getInt(1)+" "+rs.getString(2)+" "+rs.getInt(3));
+            }}
+        if(choice==4){
+            String q;
+            System.out.println("enter q:query to update in table");
+            Scanner ss=new Scanner(System.in);
+            q=ss.nextLine();
+            s.executeQuery(q);
+            ResultSet rs=s.executeQuery("select *from emp");
+            while(rs.next()){
+                System.out.println(rs.getInt(1)+" "+rs.getString(2)+" "+rs.getInt(3));
+            }}
+        if(choice==5){
+            String q1;
+            System.out.println("enter q1:query1 to delete data in table");
+            Scanner a=new Scanner(System.in);
+            q1=a.nextLine();
+            s.executeUpdate(q1);
+            ResultSet rs=s.executeQuery("select *from emp");
+            while(rs.next()){
+                System.out.println(rs.getInt(1)+" "+rs.getString(2)+" "+rs.getInt(3));
+            }}
+        if(choice==6){
+            System.out.println("Program exited");
+            System.exit(1);
+        }
+        if(choice>6 || choice<1){
+            System.out.println("enter number from only 1 to 6");
+        }
+}}
