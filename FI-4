@@ -1,0 +1,40 @@
+//4-create user defined class for product having name and price as attributes use appropriate methods to get name and prices
+class Prod{
+    String name;
+    int price;
+
+    public Prod(String name, int price) {
+        this.name = name;
+        this.price = price;
+    }
+    public String getName() {
+        return name;
+    }
+    public int getPrice() {
+        return price;
+    }
+}
+ class fourr {
+    public static void main(String[] args) {
+        List<Prod> productsList = new ArrayList<Prod>();
+
+        //Adding Products
+        productsList.add(new Prod("HP",25000));
+        productsList.add(new Prod("Dell",30000));
+        productsList.add(new Prod("Lenovo",28000));
+        productsList.add(new Prod("Sony",80000));
+        productsList.add(new Prod("Apple",90000));
+
+        List<Integer> productPriceList =
+                productsList.stream()
+                        .map(Prod::getPrice)         // fetching price by referring getPrice method
+                        .collect(Collectors.toList());  // collecting as list
+        System.out.println(productPriceList);
+
+        List<String> productNameList =
+                productsList.stream()
+                        .map(Prod::getName)         // fetching price by referring getPrice method
+                        .collect(Collectors.toList());  // collecting as list
+        System.out.println(productNameList);
+    }
+}
