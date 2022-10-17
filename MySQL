@@ -1,0 +1,29 @@
+create database mydb;
+use mydb;
+create table departments(dept_id int auto_increment primary key,dept_name varchar(50));
+create table employees(emp_id int,
+first_name varchar(30),last_name varchar(30),email varchar(50),phone_num double,hire_date date,
+salary double,job_title varchar(30), dept_id int ,foreign key (dept_id) references departments(dept_id));
+insert into departments(dept_name) values("Testing"),("IT support"),("Development");
+select* from departments;
+insert into employees
+values(1,'Kavitha','V','kavi@gmail.com',7845657548,'2022-10-18',30000,'developer',2),
+(2,'venkatesh','R','venkat@gmail.com',7643518465,'2021-12-01',30000,'developer',3),
+(3,'ujwal','v','ujju@gmail.com',9421685432,'2022-10-09',20000,'HR',1),
+(4,'harini','v','harini@gmail.com',8751541134,'2022-08-07',15000,'admin',2),
+(5,'shobha','n','shobha@gmail.com',7845657548,'2021-09-09',10000,'developer',1);
+select * from employees;
+select first_name,last_name,dept_id from employees;
+select dept_name ,count(*) as 'no of employees'from departments
+inner join employees on employees.dept_id=departments.dept_id
+group by departments.dept_id,dept_name order by dept_name;
+select dept_name ,avg(salary) from departments join employees using(dept_id) group by dept_name;
+select First_name,last_name,max(salary)from employees where job_title='developer';
+select avg(salary), count(*) As 'No of developers'from employees where dept_id =3;
+select job_title,count(*) AS 'Same Job'from employees group by job_title;
+Select (max(salary) - min(salary)) AS 'Difference in salary'from employees;
+select job_title,avg(salary) from employees where job_title !='developer'group by job_title;
+SELECT emp_id, AVG(salary), COUNT(*) from employees group by dept_id having COUNT(*) > 10;
+
+
+
